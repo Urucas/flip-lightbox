@@ -1,0 +1,45 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<script href="../fliplightbox.min.js"></script>
+
+<polymer-element name="flip-lightbox" attributes="images width height">
+	<template>
+		<div id="flip-lightbox">&nbsp;</div>
+	</template>
+	<script>
+		Polymer('flip-lightbox', {
+			elid: 'flip-lightbox',
+			images: [],
+			width: 240,
+			height: 180, 
+			ready: function() {
+				var obj = this.$;
+				var el = obj[this.elid];
+				var len = this.images.length;
+				var gallery = "";
+				console.log(this.images);
+				for(var i=0;i<len;i++){
+					var image = this.images[i];
+					gallery+= this.buildItem(image.img, image.url, this.width, this.height);	
+				}
+				el.innerHTML = gallery;
+			},
+			buildItem: function(img, url, width, height){
+				var html = [
+					'<a href="',
+					url,
+					'" class="flipLightBox">',
+					'<img src="',
+					url,
+					'" width="',
+					width,
+					'" height="',
+					height,
+					'" />',
+					'</a>'
+				]
+				return html.join("");
+			}
+		});
+	</script>
+</polymer-element>
+
